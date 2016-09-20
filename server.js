@@ -17,6 +17,7 @@ function addSearch(str) {
             
             console.log('Added new search ' + JSON.stringify(newTerm));
         });
+        db.close();
     });
 }
 
@@ -44,10 +45,11 @@ app.use('/', express.static(__dirname + '/styles'));
 
 app.get('/api/imagesearch/:terms', function(req, response){
     
-    //var terms = req.params.terms.split('?')[0];
+    var term = req.params.terms.split('?')[0];
+    //var term ="Ninja Turtles";
     //var offset = req.params.terms.split('?')[1];
     
-    var term ="Ninja Turtles";
+    
     
     Bing.images(term, {top: 5}, function(err, res, body){
         if (err) throw err;
@@ -64,7 +66,7 @@ app.get('/api/imagesearch/:terms', function(req, response){
                 context: images[0].SourceUrl
             });
         }
-        //addSearch(term);
+        addSearch(term);
         response.send(printStuff);
     });
     
