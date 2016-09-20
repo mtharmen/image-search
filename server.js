@@ -50,7 +50,7 @@ app.get('/api/imagesearch/:terms', function(req, response){
     //var offset = req.params.terms.split('?')[1];
     
     
-    
+    // Only returns 5 results to limit load
     Bing.images(term, {top: 5}, function(err, res, body){
         if (err) throw err;
         
