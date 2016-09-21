@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/mtharmen/image-search/issues"
   },
-  "homepage": "https://github.com/mtharmen/image-search#readme"
+  "homepage": "https://github.com/mtharmen/image-search#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.10",
+    "node-bing-api": "^2.4.1"
+  },
+  "devDependencies": {}
 }
