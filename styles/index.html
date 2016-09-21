@@ -1,33 +1,22 @@
 <html lang="en">
     <head>
-        <title>FreeCodeCamp API Basejump: URL Shortener Microservice</title>
+        <title>FreeCodeCamp API Basejump: Image Search Microservice</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
     <body>
         <div class="container">
             <h1 class="header">
-                API Basejump: Timestamp microservice
+                API Basejump: Image Search microservice
             </h1>
             <blockquote>
                 User stories:
-                <ul>1) I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.</ul>
-                <ul>2) When I visit that shortened URL, it will redirect me to my original link.</ul>
+                <ul>1) I can get the image URLs, alt text and page urls for a set of images relating to a given search string.</ul>
+                <ul>2) I can paginate through the responses by adding a ?offset=2 parameter to the URL.</ul>
+                <ul>3) I can get a list of the most recently submitted search strings.</ul>
             </blockquote>
             <h3>Example usage:</h3>
-            <code>https://mtharmen-mini-url.herokuapp.com/new/https://www.google.com</code><br>
-            <code>https://mtharmen-mini-url.com/new/https://foo.com:800</code>
-            <h3>Example output:</h3>
-            <code>
-                { "original_url":"https://www.google.com", "mini_url":"https://mtharmen-mini-url.herokuapp.com/2249" }
-            </code>
-            <h3>Usage:</h3>
-            <code>
-                https://mtharmen-mini-url.herokuapp.com/2249
-            </code>
-            <h3>Will redirect to:</h3>
-            <code>
-                https://www.google.com
-            </code>
+            <code>https://mtharmen-image-search.herokuapp.com/api/imagesearch/lolcats%20funny?offset=10</code><br>
+            <code>https://mtharmen-image-search.herokuapp.com/api//latest/imagesearch/</code>
         </div>
     </body>
 </html>
