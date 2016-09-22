@@ -36,22 +36,22 @@ function getPast(callback) {
             for (var i=0; i < doc.length; i++) {
                 searchList.push({ term: doc[i].term, when: doc[i].when });
             }
+            console.log(searchList);
             callback(searchList);
         });
+        db.close();
     });
 }
 
 app.use('/', express.static(__dirname + '/styles'));
 
-app.get('/api/imagesearch/:terms', function(req, response){
+app.get('/imagesearch/:terms', function(req, res){
     
-    var term = req.params.terms.split('?')[0];
-    //var term ="Ninja Turtles";
-    //var offset = req.params.terms.split('?')[1];
+    var term = req.params.terms;
+    var page = req.query.page || 10; // Number of results per page, default to 10
+    var offset = req.query.offset*page || 0; // Skip number results by page, default to 0
     
-    
-    // Only returns 5 results to limit load
-    Bing.images(term, {top: 5}, function(err, res, body){
+    Bing.images(term, {top: page, skip: offset}, function(err, response, body){
         if (err) throw err;
         
         var images = body.d.results;
@@ -67,16 +67,16 @@ app.get('/api/imagesearch/:terms', function(req, response){
             });
         }
         addSearch(term);
-        response.send(printStuff);
+        res.json(printStuff);
     });
     
 });
 
 
-app.get('/api/latest/imagesearch', function(req, res){
+app.get('/history', function(req, res){
     
     getPast(function(searchList) {
-        res.send(searchList);
+        res.json(searchList);
     });
     
 });
@@ -84,6 +84,6 @@ app.get('/api/latest/imagesearch', function(req, res){
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
-    console.log('Listening on port ', port);
+    console.log('Listening on port', port);
 });
 
