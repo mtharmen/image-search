@@ -16,7 +16,8 @@ var historySchema = mongoose.Schema({
 var History = mongoose.model('History', historySchema);
 
 // Establishing connection to database
-mongoose.connect('mongodb://' + process.env.IP + '/image-search');
+var mongodbUrl = process.env.MONGOD_URL + '/image-search'
+mongoose.connect(mongodbUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
